@@ -12,6 +12,7 @@ const Video = (props : VideoProps) => {
   return (
     <>
     <h2>{props.fullPath}</h2>
+    <KeyboardListener fullPath={props.fullPath}/>
     <VideoPlayer fullPath={props.fullPath}/>
     <p className='text-red-500'>Vidoe</p>
     </>
