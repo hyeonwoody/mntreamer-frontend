@@ -1,9 +1,13 @@
-// FileBrowserWithPlayer.jsx
+
 import FileExplorer from '../organisms/fileExplorer/FileExplorer';
 
-interface HomeProps {
-    basePath : string;
-    cutEditKey : string; 
+export interface FileExplorerCtx {
+  rootPath: string;
+  currentPathSessionKey: string;
+}
+
+export interface HomeProps {
+    ctx : FileExplorerCtx[]
 }
 
 const Home = (props : HomeProps) => {
@@ -11,8 +15,10 @@ const Home = (props : HomeProps) => {
 
   return (
     <>
-    <FileExplorer basePath={props.basePath}/>
-    <FileExplorer basePath={props.cutEditKey}/>
+    {props.ctx.map((item, index) => (
+      <FileExplorer key={index} sessionKey={item.currentPathSessionKey} rootPath={item.rootPath}/>
+    ))}
+  
     </>
     
   );

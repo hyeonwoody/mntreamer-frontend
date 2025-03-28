@@ -4,7 +4,7 @@ import { useFileExplorerContext } from "../../organisms/fileExplorer/FileExplore
 
 const FileExplorerBackButton = () => {
     const fileExplorerEntryContext = useFileExplorerContext("currentPath")
-    const {basePath, currentPath, setCurrentPath} = fileExplorerEntryContext
+    const {rootPath, currentPath, setCurrentPath} = fileExplorerEntryContext
 
     const handleBackClick = () => {
         const newPath = currentPath.split('/').slice(0, -2).join('/') + '/';
@@ -13,7 +13,7 @@ const FileExplorerBackButton = () => {
 
     return (
         <>
-         <button onClick={handleBackClick} disabled={currentPath === basePath}>Back</button>
+         <button onClick={handleBackClick} disabled={currentPath === rootPath}>Back</button>
         </>
         
     )

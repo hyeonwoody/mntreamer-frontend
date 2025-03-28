@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFileExplorerContext } from "../../organisms/fileExplorer/FileExplorerContext";
-import { FetchFilesRequest } from "./entryApi";
+import { FetchFilesRequest } from "../../api/entryApi";
 import FileExplorerFolderEntry from "./folderEntry";
 import FileExplorerMediaEntry from "./mediaEntry";
 import { useNavigate} from "react-router-dom";
@@ -9,11 +9,15 @@ const FileExplorerEntry = () => {
     const [files, setFiles] = useState([]);
     const [folders, setFolders] = useState([]);
     const fileExplorerEntryContext = useFileExplorerContext("entry")
-    const {basePath, currentPath, setCurrentPath} = fileExplorerEntryContext
+    const { currentPath, setCurrentPath} = fileExplorerEntryContext
 
     const navigate = useNavigate();
 
     const handleFiles = (fileEntries) => {
+      console.log(fileEntries)
+      if (fileEntries.length === 0) {
+        alert("The folder is empty");
+      }
         const fileList = [];
         const folderList = [];
         fileEntries.forEach (file => {
@@ -28,7 +32,8 @@ const FileExplorerEntry = () => {
     } 
 
     const handleFolderClick = (folderName : string) => {
-        setCurrentPath(`${currentPath}${folderName}/`);
+        const newPath = `${currentPath}${folderName}/`
+        setCurrentPath(newPath);
     };
 
     const handleMediaClick = (index : number) => {

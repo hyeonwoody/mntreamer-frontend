@@ -3,19 +3,24 @@ import Entry from '../../molecules/fileExplorer/entry';
 import FileExplorerProvider from './FileExplorerContext';
 import CurrentPath from '../../molecules/fileExplorer/currentPath';
 import BackButton from '../../molecules/fileExplorer/backButton';
+import { useEffect, useState } from 'react';
 
 
 interface FileExplorerProps {
-    basePath : string;
+    sessionKey: string;
+    rootPath : string;
 }
 
 const FileExplorer = (props : FileExplorerProps) => {
+  
+
+
   return (
-    <FileExplorerProvider basePath = {props.basePath}>
+    <FileExplorerProvider rootPath = {props.rootPath}>
     <h2>File Explorer</h2>
-      <CurrentPath></CurrentPath>
+      <CurrentPath sessionKey={props.sessionKey}/>
       <BackButton></BackButton>
-      <Entry />
+      <Entry/>
     </FileExplorerProvider>
   );
 };
