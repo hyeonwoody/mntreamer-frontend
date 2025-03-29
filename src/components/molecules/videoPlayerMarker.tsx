@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useVideoPlayerContext } from "../organisms/videoPlayer/VideoPlayerContext";
 
 
@@ -6,19 +6,18 @@ const VideoPlayerMarker = () => {
     const [hoveredMarker, setHoveredMarker] = useState(null);
 
     const videoPlayerCtx = useVideoPlayerContext("marker")
-    const {markers, setMarkers,playerRef} = videoPlayerCtx
+    const {markers, playerRef} = videoPlayerCtx
     
-    const addMarkers = () => {
-
-        const currentTime = playerRef.current.getCurrentTime();
-        setMarkers([...markers, currentTime]);
-    };
-
     const handleOnClick = useCallback((timestamp) => {
         if (playerRef.current) {
           playerRef.current.seekTo(timestamp);
         }
       }, [playerRef]);
+
+
+      useEffect(()=>{
+        console.log(markers.length)
+      },[markers])
 
     return (
         <>
