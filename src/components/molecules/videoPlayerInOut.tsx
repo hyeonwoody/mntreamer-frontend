@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useVideoPlayerContext } from "../organisms/VideoPlayerContext";
+import { useVideoPlayerContext } from "../organisms/videoPlayer/VideoPlayerContext";
 
 
 const VideoPlayerMarker = () => {

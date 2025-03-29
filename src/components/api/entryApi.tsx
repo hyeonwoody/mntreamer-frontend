@@ -1,4 +1,4 @@
-import {My} from '../../../configuration/web/config'
+import {My} from '../../configuration/web/config'
 
 const my = new My();
 
@@ -9,16 +9,17 @@ export async function FetchFilesRequest(path : string, handleFiles : (files) => 
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ path }),
         });
-    
-        if (!response.ok) throw new Error("Failed to fetch files");
-    
         const data = await response.json();
-        console.log("Fetched Files:", data);
-    
+        if (!response.ok) {
+          if (data.files === null || data.files.length === 0) {
+            handleFiles([])
+          }
+          return
+        }
         if (data && Array.isArray(data.files)) {
             handleFiles(data.files)
         } else {
-          console.error("Unexpected response format:", data);
+          handleFiles([])
         }
       } catch (error) {
         console.error("Error fetching files:", error);

@@ -15,14 +15,7 @@ export async function FetchTargetDuration(path : string) {
     if (!response.ok) throw new Error("Failed to fetch files");
 
     const data = await response.json();
-    console.log("Fetched targetDuration:", data);
-
-    if (data) {
-        return data.taregetDuration
-    } else {
-      console.error("Unexpected response format:", data);
-      return undefined;
-    }
+    return data.targetDuration
   } catch (error) {
     console.error("Error fetching files:", error);
     return undefined;
@@ -39,7 +32,6 @@ export async function FetchUrlRequest(path : string, handleUrl : (files) => void
         if (!response.ok) throw new Error("Failed to fetch files");
     
         const data = await response.json();
-        console.log("Fetched Files:", data);
     
         if (data && Array.isArray(data.url)) {
             handleUrl(data.url)
@@ -54,7 +46,7 @@ export async function FetchUrlRequest(path : string, handleUrl : (files) => void
 export async function ExciseInOutRequest(fullPath : string, begin : number, end : number) {
   try {
     console.log("API : ",fullPath, begin, end)
-    const response = await fetch(`http://${my.backendIpAddress}:${my.backEndPort}/api/v1/media`, {
+    const response = await fetch(`http://${my.backendIpAddress}:${my.backEndPort}/api/v1/media/excise`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ fullPath, begin, end }),
@@ -63,10 +55,10 @@ export async function ExciseInOutRequest(fullPath : string, begin : number, end 
     if (!response.ok) {
       console.error(`HTTP error! status: ${response.status}`);
     }
-    await response.json();
   } catch (error) {
     console.error("Error deleting InOut:", error);
     throw error;
   } 
   
 }
+

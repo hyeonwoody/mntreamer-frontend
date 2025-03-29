@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import VideoPlayerMolecule from '../molecules/videoPlayer'
+import VideoPlayerMolecule from '../../molecules/videoPlayer'
 import VideoPlayerProvider from './VideoPlayerContext';
-import VideoPlayerMarker from '../molecules/videoPlayerMarker';
-import VideoPlayerInOut from '../molecules/videoPlayerInOut';
+import VideoPlayerMarker from '../../molecules/videoPlayerMarker';
+import VideoPlayerInOut from '../../molecules/videoPlayerInOut';
+import KeyboardListener from '../keyboardListener';
 
 interface VideoPlayerProps {
     fullPath: string
@@ -11,6 +12,7 @@ interface VideoPlayerProps {
 const VideoPlayer = (props : VideoPlayerProps) => {
   return (
     <VideoPlayerProvider>
+      <KeyboardListener fullPath={props.fullPath}/>
         <div className='relative'>
         
                 <VideoPlayerMolecule fullPath={props.fullPath}/>
