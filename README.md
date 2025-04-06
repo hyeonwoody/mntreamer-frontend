@@ -51,6 +51,7 @@ const VideoPlayer = (props : VideoPlayerProps) => {
 ## 🎥: Demonstration
 ### 파일 탐색 및 재생
 <img src="https://github.com/hyeonwoody/mntreamer-frontend/blob/master/doc/demontration/FileExplorer.gif" width="894" height="503" />
+
 ### 인 / 아웃 설정
 <img src="https://github.com/hyeonwoody/mntreamer-frontend/blob/master/doc/demontration/InOut.gif" width="894" height="503" />
 
